@@ -12,16 +12,19 @@ from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 load_dotenv()
 
-#change as per requirement
+# .env
 chrome_path = "/Users/jonyeatman/Downloads/chromedriver"
 email = os.environ.get("EMAIL")
 password  = os.environ.get("PASSWD")
 url = os.environ.get("URL")
 
-ddl = 'Fridge 11'
-ddl2 = 'Fridge 12'
-ddl3 = 'Freezer 18'
-date = 'June 03, 2022'
+ddl1 = 'Fridge 10'
+ddl2 = 'Fridge 11'
+ddl3 = 'Fridge 12'
+ddl4 = 'Freezer 18'
+
+date_start = 'June 05, 2022'
+date_end = 'June 06, 2022'
 
 
 print("process Started ---------")
@@ -30,85 +33,121 @@ op = Options()
 op.add_argument("--start-maximized") #open Browser in maximized mode
 op.add_argument("--no-sandbox") #bypass OS security model
 op.add_argument("--disable-dev-shm-usage") #overcome limited resource problems
-op.add_experimental_option("excludeSwitches", ["enable-automation"])
-op.add_experimental_option('useAutomationExtension', False)
+# op.add_experimental_option("excludeSwitches", ["enable-automation"])
+# op.add_experimental_option('useAutomationExtension', False)
 op.headless = False # change to true if we want to hide the browser
 s = Service(chrome_path)
 
 with  webdriver.Chrome(service=s, options=op) as d:
     d.get(url)
-    d.find_element(by=By.XPATH, value='//*[@id="login-form:j_idt123_content"]/div[1]/div[2]/div/input').send_keys(email)
-    d.find_element(by=By.XPATH, value='//*[@id="login-form:j_idt123_content"]/div[2]/div[2]/div/input').send_keys(password)
-    d.find_element(by=By.XPATH, value='//*[@id="login-form:j_idt136"]/span').click()
+    d.find_element(by=By.NAME, value='login-form:j_idt120').send_keys(email)
+    d.find_element(by=By.NAME, value='login-form:j_idt125').send_keys(password)
+    d.find_element(by=By.ID, value='login-form:j_idt127').click()
     time.sleep(2)
+
+# Fridge 10
 # ddl input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl1)
     time.sleep(2)
 # drop-down
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').click()
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys(Keys.ARROW_UP, Keys.ENTER)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
     time.sleep(2)
+    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    time.sleep(4)
 # data table
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:devices-table_data"]/tr[2]/td[3]/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Fridge 10').click()
     time.sleep(3)
 # export
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:j_idt400_content"]/table/tbody/tr[10]/td/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Export').click()
     time.sleep(3)
 # run report
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-builder-form:runBtn"]').click()
+    d.find_element(by=By.ID, value='intempconnect-data-builder-form:runBtn').click()
     time.sleep(12)
 # home
     d.find_element(by=By.ID, value='j_idt40:j_idt42').click()
     time.sleep(3)
 # rerun
 
+# Fridge 11
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl2)
     time.sleep(2)
 # drop-down
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').click()
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
     time.sleep(2)
+    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    time.sleep(4)
 # data table
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:devices-table_data"]/tr[2]/td[3]/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Fridge 11').click()
     time.sleep(3)
 # export
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:j_idt400_content"]/table/tbody/tr[10]/td/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Export').click()
     time.sleep(3)
 # run report
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-builder-form:runBtn"]').click()
+    d.find_element(by=By.ID, value='intempconnect-data-builder-form:runBtn').click()
     time.sleep(12)
 # home
     d.find_element(by=By.ID, value='j_idt40:j_idt42').click()
     time.sleep(3)
 # rerun
 
+# Fridge 12
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl3)
     time.sleep(2)
 # drop-down
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').click()
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
     time.sleep(2)
+    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    time.sleep(4)
 # data table
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:devices-table_data"]/tr[2]/td[3]/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Fridge 12').click()
     time.sleep(3)
 # export
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:j_idt400_content"]/table/tbody/tr[10]/td/a').click()
+    d.find_element(by=By.LINK_TEXT, value='Export').click()
     time.sleep(3)
 # run report
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-builder-form:runBtn"]').click()
+    d.find_element(by=By.ID, value='intempconnect-data-builder-form:runBtn').click()
     time.sleep(12)
 # home
     d.find_element(by=By.ID, value='j_idt40:j_idt42').click()
     time.sleep(3)
+# rerun
+
+# Freezer 18
+# ddl input
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl4)
+    time.sleep(2)
+# drop-down
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
+    time.sleep(2)
+# date input
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
+    time.sleep(2)
+    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    time.sleep(4)
+# data table
+    d.find_element(by=By.LINK_TEXT, value='Freezer 18').click()
+    time.sleep(3)
+# export
+    d.find_element(by=By.LINK_TEXT, value='Export').click()
+    time.sleep(3)
+# run report
+    d.find_element(by=By.ID, value='intempconnect-data-builder-form:runBtn').click()
+    time.sleep(12)
+# home
+    d.find_element(by=By.ID, value='j_idt40:j_idt42').click()
+    time.sleep(3)
+# rerun
 
 
 print("Done----------------------")
@@ -122,3 +161,4 @@ print("Done----------------------")
 
    #  d.close()
 
+#intempconnect-data-devices-form\:date-filter-table\:0\:devices-panel-date-filter-input
