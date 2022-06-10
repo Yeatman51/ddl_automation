@@ -3,6 +3,7 @@
 # download selenium driver from https://chromedriver.chromium.org/home 
 
 import time, os
+from turtle import up
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
@@ -18,13 +19,12 @@ email = os.environ.get("EMAIL")
 password  = os.environ.get("PASSWD")
 url = os.environ.get("URL")
 
-ddl1 = 'Fridge 10'
-ddl2 = 'Fridge 11'
-ddl3 = 'Fridge 12'
-ddl4 = 'Freezer 18'
+ddl1 = 'Refrigerator 31'
+ddl2 = 'Refrigerator 34'
+ddl3 = 'Freezer 32'
+ddl4 = 'Freezer 33'
 
-date_start = 'June 08, 2022'
-date_end = 'June 09, 2022'
+date = 'May 31, 2022'
 
 
 print("process Started ---------")
@@ -45,20 +45,20 @@ with  webdriver.Chrome(service=s, options=op) as d:
     d.find_element(by=By.ID, value='login-form:j_idt127').click()
     time.sleep(2)
 
-# Fridge 10
+# Refrigerator 31
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl1)
     time.sleep(2)
 # drop-down
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
-# date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
-    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+# date input
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
     time.sleep(4)
 # data table
-    d.find_element(by=By.LINK_TEXT, value='Fridge 10').click()
+    d.find_element(by=By.LINK_TEXT, value='Refrigerator 31').click()
     time.sleep(3)
 # export
     d.find_element(by=By.LINK_TEXT, value='Export').click()
@@ -71,7 +71,7 @@ with  webdriver.Chrome(service=s, options=op) as d:
     time.sleep(3)
 # rerun
 
-# Fridge 11
+# Refrigerator 34
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl2)
     time.sleep(2)
@@ -79,12 +79,10 @@ with  webdriver.Chrome(service=s, options=op) as d:
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
-    time.sleep(2)
-    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
     time.sleep(4)
 # data table
-    d.find_element(by=By.LINK_TEXT, value='Fridge 11').click()
+    d.find_element(by=By.LINK_TEXT, value='Refrigerator 34').click()
     time.sleep(3)
 # export
     d.find_element(by=By.LINK_TEXT, value='Export').click()
@@ -97,7 +95,7 @@ with  webdriver.Chrome(service=s, options=op) as d:
     time.sleep(3)
 # rerun
 
-# Fridge 12
+# Freezer 32
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl3)
     time.sleep(2)
@@ -105,12 +103,10 @@ with  webdriver.Chrome(service=s, options=op) as d:
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
-    time.sleep(2)
-    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
     time.sleep(4)
 # data table
-    d.find_element(by=By.LINK_TEXT, value='Fridge 12').click()
+    d.find_element(by=By.LINK_TEXT, value='Refrigerator32').click()
     time.sleep(3)
 # export
     d.find_element(by=By.LINK_TEXT, value='Export').click()
@@ -123,7 +119,7 @@ with  webdriver.Chrome(service=s, options=op) as d:
     time.sleep(3)
 # rerun
 
-# Freezer 18
+# Freezer 33
 # ddl input
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:config-name-filter-table:0:devices-panel-config-name-filter-input"]').send_keys(ddl4)
     time.sleep(2)
@@ -131,12 +127,10 @@ with  webdriver.Chrome(service=s, options=op) as d:
     d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-filter-input"]').send_keys('b')
     time.sleep(2)
 # date input
-    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date_start)
-    time.sleep(2)
-    d.find_element(by=By.ID, value='intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-from-filter-input_input').send_keys(date_end)
+    d.find_element(by=By.XPATH, value='//*[@id="intempconnect-data-devices-form:date-filter-table:0:devices-panel-date-to-filter-input_input"]').send_keys(date)
     time.sleep(4)
 # data table
-    d.find_element(by=By.LINK_TEXT, value='Freezer 18').click()
+    d.find_element(by=By.LINK_TEXT, value='Freezer 33').click()
     time.sleep(3)
 # export
     d.find_element(by=By.LINK_TEXT, value='Export').click()
