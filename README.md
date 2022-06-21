@@ -1,4 +1,11 @@
-# DDL Automation Process
+<!-- # DDL Automation Process -->
+<div style="background-color:#4db0b0; color:black; font-size: 32px; padding: 10px;">
+DDL Automation Process
+</div>
+
+---
+<br>
+
 ![honu logo](img/honumg_logo.jpg)
 
 This README Documentation was created to convey the process used to automate the DDL fridge/freezer daily downloads. additionally this document will cover the continued support and backlog of the DDL Site download files sent to the Honu DDL email daily.
@@ -59,6 +66,11 @@ This README Documentation was created to convey the process used to automate the
 
  If you run into an error it is because the file is removing the external portion and there is a file already named with an identical name. This is an easy fix simply rename the matching file something different and a rerun the script
 
+![](img/Screenshot_0007.png)
+![](img/Screenshot_0008.png)
+
+---
+
 # rename_ddl_email_download 
  Many files were not sent with the correct format or the corresponding site name and as a result have been downloaded with their default settings.
 
@@ -80,12 +92,17 @@ This README Documentation was created to convey the process used to automate the
  After running this file be sure to remove all of the renamed files and. Do not re run this file again as it will restructure anything inside of the DDL name split folder. Only rerun this file if every single file inside of DDL name split folder Has the original downloaded format.
  'DDL 113 2022-04-10 19_29_36 EST (Data EST).pdf'
 
+![](img/Screenshot_0005.png)
+![](img/Screenshot_0006.png)
+
 # Email Download Automation Macros
 
 ## Download Attachment name from Email Subject
 ## Download Attachment name from Email Body Text
 ## Download Attachment name from Email file Name
 ## Download Attachment name from Email file Name and Subject
+
+![](img/Screenshot_0009.png)
 
 The following files represent custom VBA code that was used to generate a custom macro commands within the DDL email.
 
@@ -94,3 +111,7 @@ These macros are only accessible on the Outlook desktop application And you must
 To execute the macro simply select the emails you wish to automatically download attachments from and then select which macro he would like to run
 
 All of the files will be saved to the same location S:\Scans\DDL Email Download' Except the download by file name command. This command will save the selected email attachments directly to the to the name split folder 'S:\Scans\DDL name split'
+
+<div style="background-color:#4db0b0; padding: 5px;">
+<br>
+</div>
